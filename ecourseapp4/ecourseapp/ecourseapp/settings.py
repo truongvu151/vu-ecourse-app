@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import pymysql
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -38,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'courses.apps.CoursesConfig',
+    'ckeditor',
+    'ckeditor_uploader',
+    'rest_framework',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -50,9 +55,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CKEDITOR_UPLOAD_PATH = "ckeditor/courses/"
+
 AUTH_USER_MODEL = 'courses.User'
 
 ROOT_URLCONF = 'ecourseapp.urls'
+
+MEDIA_ROOT = '%s/courses/static/' % BASE_DIR
 
 TEMPLATES = [
     {
@@ -75,16 +84,15 @@ WSGI_APPLICATION = 'ecourseapp.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-import pymysql
 pymysql.install_as_MySQLdb()
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'cs19-vutruong',
+        'NAME': 'coursedb',
         'USER': 'root',
-        'PASSWORD': 'Admin@123',
-        'HOST': '' # mặc định localhost
+        'PASSWORD': '',
+        'HOST': ''  # mặc định localhost
     }
 }
 
