@@ -42,7 +42,7 @@ class Lesson(BaseModel):
     content = RichTextField()
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     tags = models.ManyToManyField('Tag', related_name='lessons')
-
+    
     def __str__(self):
         return self.subject
 
